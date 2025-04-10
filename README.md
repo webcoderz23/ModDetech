@@ -1,97 +1,113 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# ModDetech - App Installation Detection
 
-# Getting Started
+A React Native application that monitors and notifies users about newly installed applications on Android devices.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
 
-## Step 1: Start Metro
+- Real-time detection of newly installed applications
+- Push notifications for app installations
+- List view of detected applications
+- Permission management for app detection
+- Background service for continuous monitoring
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+## Prerequisites
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+Before you begin, ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v14 or newer)
+- [Java Development Kit (JDK)](https://adoptium.net/) (v11 or newer)
+- [Android Studio](https://developer.android.com/studio)
+- [Android SDK](https://developer.android.com/studio#command-tools)
+- [React Native CLI](https://reactnative.dev/docs/environment-setup)
 
-```sh
-# Using npm
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/moddetech.git
+cd moddetech
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Install Android dependencies:
+```bash
+cd android
+./gradlew clean
+cd ..
+```
+
+4. Create a local.properties file:
+```bash
+cd android
+echo sdk.dir=C:\\Users\\YourUsername\\AppData\\Local\\Android\\Sdk > local.properties
+cd ..
+```
+Replace `YourUsername` with your Windows username.
+
+## Building the APK
+
+1. Generate a signing key (if you don't have one):
+```bash
+cd android/app
+keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000
+cd ../..
+```
+
+2. Build the release APK:
+```bash
+cd android
+./gradlew assembleRelease
+```
+
+The APK will be generated at: `android/app/build/outputs/apk/release/app-release.apk`
+
+## Installation on Device
+
+1. Enable "Install from Unknown Sources" in your Android device settings
+2. Transfer the APK to your device
+3. Install the APK
+4. Grant the following permissions when prompted:
+   - Usage Access
+   - Notifications
+   - Package Query
+
+## Development
+
+1. Start the Metro bundler:
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+2. Run the app in debug mode:
+```bash
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+## Troubleshooting
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+If you encounter build issues:
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+1. Clean the project:
+```bash
+cd android
+./gradlew clean
+cd ..
 ```
 
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
+2. Clear Metro bundler cache:
+```bash
+npm start -- --reset-cache
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+3. Rebuild node modules:
+```bash
+rm -rf node_modules
+npm install
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## License
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project is licensed under the MIT License - see the LICENSE file for details. 
